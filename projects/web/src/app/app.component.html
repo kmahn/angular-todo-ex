@@ -1,0 +1,74 @@
+<h1>Todo Application</h1>
+<div class="container">
+    <!-- Todo List -->
+    <ul>
+        <li
+            class="todo-item"
+            *ngFor="let todo of todos;"
+            [ngClass]="getNgClass(todo)"
+            (click)="select(todo)"
+        >
+            <h2 class="title">{{todo.title}}</h2>
+            <button
+                type="button"
+                (click)="removeTodo(todo)"
+            >
+                &times;
+            </button>
+        </li>
+    </ul>
+    <!-- Todo Form -->
+    <form>
+        <label>
+            제목:
+            <input
+                type="text"
+                name="title"
+                placeholder="제목 입력"
+                [(ngModel)]="todoForm.title"
+            >
+        </label>
+        <br>
+        <label>
+            <input
+                name="important"
+                type="checkbox"
+                [(ngModel)]="todoForm.important"
+            >
+            중요
+        </label>
+        <br>
+        <label>
+            <input
+                name="done"
+                type="checkbox"
+                [(ngModel)]="todoForm.done"
+            >
+            완료
+        </label>
+        <br>
+        <label>
+            완료예정일:
+            <input
+                type="date"
+                name="dueDate"
+                placeholder="완료일"
+                [ngModel]="getDateString(todoForm.dueDate)"
+                (ngModelChange)="changeDueDate($event)"
+            >
+            <br>
+        </label>
+        <button
+            type="reset"
+            (click)="reset()"
+        >
+            취소
+        </button>
+        <button
+            type="submit"
+            (click)="submit()"
+        >
+            {{todoForm.id ? '수정' : '등록'}}
+        </button>
+    </form>
+</div>
