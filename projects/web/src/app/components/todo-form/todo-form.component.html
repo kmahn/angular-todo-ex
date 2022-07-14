@@ -1,0 +1,41 @@
+<form>
+  <label>
+    제목:
+    <input type="text"
+           name="title"
+           placeholder="제목 입력"
+           [(ngModel)]="todo.title">
+  </label>
+  <br>
+  <label>
+    <input name="important"
+           type="checkbox"
+           [(ngModel)]="todo.important">
+    중요
+  </label>
+  <br>
+  <label>
+    <input name="done"
+           type="checkbox"
+           [(ngModel)]="todo.done">
+    완료
+  </label>
+  <br>
+  <label>
+    완료예정일:
+    <input type="date"
+           name="dueDate"
+           placeholder="완료일"
+           [ngModel]="getDateString(todo.dueDate)"
+           (ngModelChange)="changeDueDate($event)">
+    <br>
+  </label>
+  <button type="reset"
+          (click)="reset()">
+    취소
+  </button>
+  <button type="submit"
+          (click)="submit()">
+    {{todo.id ? '수정' : '등록'}}
+  </button>
+</form>

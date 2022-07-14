@@ -1,0 +1,5 @@
+<td-todo-item *ngFor="let todo of todos"
+              [todo]="todo"
+              [ngClass]="getNgClass(todo)"
+              (click)="select(todo)"></td-todo-item>
+
